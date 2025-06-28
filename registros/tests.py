@@ -8,16 +8,16 @@ class RegistroTest(TestCase):
 
 
 class RegistroEmailTest(TestCase):
-    
-    def test_email_con_dominio_gmail(self):
-        registro = Registro.objects.create(nombre="Carlos", email="carlos@gmail.com")
-        self.assertTrue(registro.email.endswith("@gmail.com"))
 
-    def test_email_con_dominio_outlook(self):
-        registro = Registro.objects.create(nombre="Laura", email="laura@outlook.com")
-        self.assertTrue(registro.email.endswith("@outlook.com"))
+    def test_email_tiene_dominio_valido(self):
+        casos = [
+            ("Carlos", "carlos@gmail.com", "@gmail.com"),
+            ("Laura", "laura@outlook.com", "@outlook.com"),
+            ("Empresa", "empleado@miempresa.cl", "@miempresa.cl")
+        ]
 
-    def test_email_con_dominio_empresa(self):
-        registro = Registro.objects.create(nombre="Empresa", email="empleado@miempresa.cl")
-        self.assertTrue(registro.email.endswith("@miempresa.cl"))
+        for nombre, email, dominio in casos:
+            with self.subTest(email=email):
+                registro = Registro.objects.create(nombre=nombre, email=email)
+                self.assertTrue(registro.email.endswith(dominio))
 
