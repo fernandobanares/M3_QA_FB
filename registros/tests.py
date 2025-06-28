@@ -38,5 +38,16 @@ class RegistroExtraTest(TestCase):
         Registro.objects.create(nombre="Uno", email="uno@mail.com")
         Registro.objects.create(nombre="Dos", email="dos@mail.com")
         self.assertEqual(Registro.objects.count(), 2)
+        
+from unittest.mock import patch
+from django.test import TestCase
+
+class MockingTest(TestCase):
+
+    @patch("registros.models.Registro.__str__", return_value="MockedName")
+    def test_mockear_str_registro(self, mock_str):
+        registro = Registro(nombre="Carmen", email="carmen@mail.com")
+        self.assertEqual(str(registro), "MockedName")
+
 
 
