@@ -1,0 +1,1 @@
+Este proyecto utiliza SQLite como base de datos local por defecto, gestionada automáticamente por Django.
