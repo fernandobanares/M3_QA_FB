@@ -6,7 +6,7 @@ class RegistroTest(TestCase):
         registro = Registro.objects.create(nombre="Fernando", email="fer@example.com")
         self.assertEqual(registro.nombre, "Fernando")
 
-
+# Refactorización aplicada: unificamos tres tests similares en un solo test con subTest para evitar código repetido (DRY).
 class RegistroEmailTest(TestCase):
 
     def test_email_tiene_dominio_valido(self):
