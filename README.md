@@ -11,6 +11,7 @@ Este proyecto es una práctica integral para desarrollar y fortalecer habilidade
 - Seguir principios SOLID, DRY y patrones de diseño limpios.
 - Utilizar SQLite como base de datos local para desarrollo.
 - Documentar el proceso y resultados en un informe.
+- Simular integración con base de datos SQL externa mediante script.
 
 ## Funcionalidades
 - Crear registro
@@ -25,6 +26,7 @@ Este proyecto es una práctica integral para desarrollar y fortalecer habilidade
 - coverage (para medición de cobertura)
 - SQLite (base de datos local)
 - Git y GitHub (control de versiones y repositorio remoto)
+- SQLonline (simulado con `script.sql`)
 
 ## Pasos realizados
 
@@ -33,8 +35,9 @@ Este proyecto es una práctica integral para desarrollar y fortalecer habilidade
 3. Refactorización de pruebas usando `subTest` para evitar duplicación.
 4. Aplicación de mocking para simular métodos en los tests.
 5. Ejecución y revisión de cobertura de código con coverage.
-6. Limpieza y orden del código para mantener buenas prácticas.
-7. Creación de este README para documentar el proceso.
+6. Simulación de integración SQL: creación de un archivo `script.sql` con una tabla y 5 registros de ejemplo, ejecutado con `sqlite3` para validar la persistencia.
+7. Limpieza y orden del código para mantener buenas prácticas.
+8. Creación de este README para documentar el proceso.
 
 ## Resultados de la cobertura
 
@@ -59,14 +62,17 @@ Este proyecto es una práctica integral para desarrollar y fortalecer habilidade
 ## Retos y aprendizajes
 
 - Aprendí a aplicar el ciclo TDD de manera disciplinada.
-- Practiqué el uso de mocking con unittest.mock para simular métodos.
+- Practiqué el uso de mocking con `unittest.mock` para simular métodos.
 - Mejoré la estructura de los tests para evitar código repetido.
 - Comprendí la importancia de la cobertura y cómo medirla.
+- Simulé la persistencia en una base SQL usando SQLite + `script.sql`.
 - Documenté y versioné el proyecto usando Git y GitHub.
 
 ## Cómo ejecutar el proyecto
 
 1. Clona el repositorio:
+   ```bash
    git clone https://github.com/fernandobanares/M3_QA_FB
    cd tdd_project
+
 
