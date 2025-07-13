@@ -1,5 +1,6 @@
 from django.test import TestCase
 from .models import Registro
+from django.core.exceptions import ValidationError
 
 class RegistroCRUDTest(TestCase):
     def test_crear_registro(self):
@@ -26,4 +27,9 @@ class RegistroCRUDTest(TestCase):
         with self.assertRaises(Registro.DoesNotExist):
             Registro.objects.get(id=registro_id)
 
+    class RegistroValidacionTest(TestCase):
+        def test_nombre_no_vacio(self):
+            registro = Registro(nombre="", email="test@mail.com")
+            with self.assertRaises(ValidationError):
+                #registro.full_clean()
             
