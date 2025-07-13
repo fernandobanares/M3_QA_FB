@@ -64,3 +64,29 @@ class RegistroValidacionTest(TestCase):
         with self.assertRaises(ValidationError):
             registro.full_clean()
         
+from unittest.mock import patch, MagicMock       
+        
+class RegistroMockTest(TestCase):
+
+    @patch("registros.models.Registro.__str__", return_value="MockedName")
+    def test_mockear_str(self, mock_str):
+        registro = Registro(nombre="Carmen", email="carmen@mail.com")
+        resultado = str(registro)
+        self.assertEqual(resultado, "MockedName")
+        mock_str.assert_called_once()
+
+    @patch("registros.models.Registro.save")
+    def test_mockear_save(self, mock_save):
+        registro = Registro(nombre="Mock", email="mock@mail.com")
+        registro.save()
+        mock_save.assert_called_once()
+
+    @patch("registros.models.Registro.objects.get")
+    def test_mockear_get(self, mock_get):
+        mock_registro = MagicMock()
+        mock_registro.nombre = "Simulado"
+        mock_get.return_value = mock_registro
+
+        resultado = Registro.objects.get(id=1)
+        self.assertEqual(resultado.nombre, "Simulado")
+        mock_get.assert_called_once_with(id=1)
