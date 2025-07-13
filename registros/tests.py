@@ -45,6 +45,13 @@ class RegistroCRUDTest(TestCase):
         with self.assertRaises(Registro.DoesNotExist):
             Registro.objects.get(id=registro_id)
             
+    def test_acceso_registro_eliminado(self):
+        registro = Registro.objects.create(nombre="Temp", email="temp@mail.com")
+        registro_id = registro.id
+        #registro.delete()
+        with self.assertRaises(Registro.DoesNotExist):
+            Registro.objects.get(id=registro_id)
+            
     def test_email_invalido(self):
         registro = Registro(nombre="Valeria", email="noesuncorreo")
         with self.assertRaises(ValidationError):
