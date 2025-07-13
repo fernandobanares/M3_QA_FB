@@ -23,7 +23,7 @@ class RegistroCRUDTest(TestCase):
         registro = Registro.objects.create(nombre="Ana", email="ana@mail.com")
         registro_id = registro.id
         registro.delete()
-        #with self.assertRaises(Registro.DoesNotExist):
+        with self.assertRaises(Registro.DoesNotExist):
             Registro.objects.get(id=registro_id)
 
             
