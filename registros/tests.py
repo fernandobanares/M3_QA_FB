@@ -6,6 +6,11 @@ class RegistroCRUDTest(TestCase):
     def test_crear_registro(self):
         registro = Registro.objects.create(nombre="Fernando", email="fer@example.com")
         self.assertEqual(registro.nombre, "Fernando")
+        
+    def test_crear_nombre_vacio(self):
+        registro = Registro(nombre="", email="test@mail.com")
+        with self.assertRaises(ValidationError):
+            #registro.full_clean()
 
     def test_listar_registros(self):
         Registro.objects.create(nombre="Uno", email="uno@mail.com")
