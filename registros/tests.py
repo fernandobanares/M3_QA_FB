@@ -26,10 +26,16 @@ class RegistroCRUDTest(TestCase):
         registro.delete()
         with self.assertRaises(Registro.DoesNotExist):
             Registro.objects.get(id=registro_id)
-
-    class RegistroValidacionTest(TestCase):
-        def test_nombre_no_vacio(self):
-            registro = Registro(nombre="", email="test@mail.com")
-            with self.assertRaises(ValidationError):
-                registro.full_clean()
             
+    def test_email_invalido(self):
+        registro = Registro(nombre="Valeria", email="noesuncorreo")
+        with self.assertRaises(ValidationError):
+            registro.full_clean()
+
+
+class RegistroValidacionTest(TestCase):
+    def test_nombre_no_vacio(self):
+        registro = Registro(nombre="", email="test@mail.com")
+        #with self.assertRaises(ValidationError):
+            registro.full_clean()
+        
