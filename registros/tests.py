@@ -34,7 +34,7 @@ class RegistroCRUDTest(TestCase):
     def test_cambiar_email(self):
         registro = Registro.objects.create(nombre="Ana", email="ana@old.com")
         registro.email = "ana@new.com"
-        #registro.save()
+        registro.save()
         actualizado = Registro.objects.get(id=registro.id)
         self.assertEqual(actualizado.email, "ana@new.com")
         
