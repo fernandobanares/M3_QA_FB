@@ -18,6 +18,12 @@ class RegistroCRUDTest(TestCase):
         registros = Registro.objects.all()
         self.assertEqual(registros.count(), 2)
         
+    def test_contar_registros_listados(self):
+        Registro.objects.create(nombre="A", email="a@mail.com")
+        #Registro.objects.create(nombre="B", email="b@mail.com")
+        registros = Registro.objects.all()
+        self.assertEqual(len(registros), 2)
+        
     def test_actualizar_registro(self):
         registro = Registro.objects.create(nombre="Pedro", email="pedro@mail.com")
         registro.nombre = "Pedro Updated"
