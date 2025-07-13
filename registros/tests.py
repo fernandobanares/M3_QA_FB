@@ -31,5 +31,5 @@ class RegistroCRUDTest(TestCase):
         def test_nombre_no_vacio(self):
             registro = Registro(nombre="", email="test@mail.com")
             with self.assertRaises(ValidationError):
-                #registro.full_clean()
+                registro.full_clean()
             
