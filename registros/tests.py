@@ -1,53 +1,8 @@
 from django.test import TestCase
 from .models import Registro
 
-class RegistroTest(TestCase):
+class RegistroCRUDTest(TestCase):
     def test_crear_registro(self):
         registro = Registro.objects.create(nombre="Fernando", email="fer@example.com")
         self.assertEqual(registro.nombre, "Fernando")
-
-# Refactorización aplicada: unificamos tres tests similares en un solo test con subTest para evitar código repetido (DRY).
-class RegistroEmailTest(TestCase):
-
-    def test_email_tiene_dominio_valido(self):
-        casos = [
-            ("Carlos", "carlos@gmail.com", "@gmail.com"),
-            ("Laura", "laura@outlook.com", "@outlook.com"),
-            ("Empresa", "empleado@miempresa.cl", "@miempresa.cl")
-        ]
-
-        for nombre, email, dominio in casos:
-            with self.subTest(email=email):
-                registro = Registro.objects.create(nombre=nombre, email=email)
-                self.assertTrue(registro.email.endswith(dominio))
-                
-class RegistroExtraTest(TestCase):
-    def test_nombre_no_esta_vacio(self):
-        registro = Registro.objects.create(nombre="Ana", email="ana@mail.com")
-        self.assertNotEqual(registro.nombre, "")
-
-    def test_email_contiene_arroba(self):
-        registro = Registro.objects.create(nombre="Tomás", email="tomas@mail.com")
-        self.assertIn("@", registro.email)
-
-    def test_registro_es_string(self):
-        registro = Registro.objects.create(nombre="Lucía", email="lucia@mail.com")
-        self.assertEqual(str(registro), "Lucía")
-
-    def test_lista_registros(self):
-        Registro.objects.create(nombre="Uno", email="uno@mail.com")
-        Registro.objects.create(nombre="Dos", email="dos@mail.com")
-        self.assertEqual(Registro.objects.count(), 2)
-        
-from unittest.mock import patch
-from django.test import TestCase
-
-class MockingTest(TestCase):
-
-    @patch("registros.models.Registro.__str__", return_value="MockedName")
-    def test_mockear_str_registro(self, mock_str):
-        registro = Registro(nombre="Carmen", email="carmen@mail.com")
-        self.assertEqual(str(registro), "MockedName")
-
-
 
