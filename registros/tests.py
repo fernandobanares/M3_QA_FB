@@ -31,6 +31,13 @@ class RegistroCRUDTest(TestCase):
         actualizado = Registro.objects.get(id=registro.id)
         self.assertEqual(actualizado.nombre, "Pedro Updated")
         
+    def test_cambiar_email(self):
+        registro = Registro.objects.create(nombre="Ana", email="ana@old.com")
+        registro.email = "ana@new.com"
+        #registro.save()
+        actualizado = Registro.objects.get(id=registro.id)
+        self.assertEqual(actualizado.email, "ana@new.com")
+        
     def test_eliminar_registro(self):
         registro = Registro.objects.create(nombre="Ana", email="ana@mail.com")
         registro_id = registro.id
